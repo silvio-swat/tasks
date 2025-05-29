@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Models\Task;
 
 /**
  * Class BaseController
@@ -54,5 +55,51 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = service('session');
+    }
+
+    public function index()
+    {
+        $model = new Task();
+        $data['tasks'] = $model->findAll();
+        return view('tasks/index', $data);
+    }
+
+    public function create()
+    {
+        return view('tasks/create');
+    }
+
+    public function store()
+    {
+        $model = new Task();
+        $model->save([
+            'title'       => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+        ]);
+        return redirect()->to('/task');
+    }
+
+    public function edit($id)
+    {
+        $model = new Task();
+        $data['task'] = $model->find($id);
+        return view('tasks/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $model = new Task();
+        $model->update($id, [
+            'title'       => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+        ]);
+        return redirect()->to('/task');
+    }
+
+    public function delete($id)
+    {
+        $model = new Task();
+        $model->delete($id);
+        return redirect()->to('/task');
     }
 }
