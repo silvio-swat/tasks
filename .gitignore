@@ -131,9 +131,48 @@ backend/_modules/*
 
 # React Files and Folders
 /frontend/node_modules/
-# Ignorar arquivos de build do frontend
-/frontend/build/
 # Ignorar arquivos de log
 *.log
 # Ignorar arquivos temporários
 *.tmp
+
+# Diretórios de build
+/frontend/build/
+frontend/dist/
+
+# Arquivos de log
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/pnpm-debug.log*
+
+# Arquivos de ambiente
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+# Diretórios de cobertura de testes
+/frontend/coverage/
+
+# Arquivos de cache
+/frontend/.eslintcache
+/frontend/.next/
+frontend/.cache/
+frontend/.turbo/
+
+# Arquivos de lock (dependendo do gerenciador de pacotes utilizado)
+/frontend/package-lock.json
+/frontend/yarn.lock
+/frontend/pnpm-lock.yaml
+
+# Diretórios e arquivos de editores
+/frontend/.vscode/
+frontend/.idea/
+frontend/.DS_Store
+
+# Arquivos temporários
+/frontend/*.tmp
+/frontend/*.swp
+/frontend/*.swo
